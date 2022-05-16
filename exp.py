@@ -1,7 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
-a=0.48
+#period finder
+#a is slope of trajectory
+a=0.7
 q = 2-a*np.floor(2/a)
 def f(x, n):
 	i = 0
@@ -14,24 +15,25 @@ def f(x, n):
 		x = y
 		i+=1
 	return x
+#tot is number of samples in [0, a]
+tot = 10000
 
-
-
-for n in range(0, 2000):
+for n in range(0, tot):
 	x = []
 	y = []
-	for p in range(0, 10000):
-		x.append(a/10000*p)
+	print("checking period ", n)
+	for p in range(0, tot):
+		x.append(a/tot*p)
 		y.append(f(x[p], n))
 		if ((y[p]-x[p])*(y[p-1]-x[p-1])<0 and not (a-0.1<y[p-1]<a)):
 			print("ok")
-			print(a/10000*p)
 			break
-	print(n)
 	if ((y[p]-x[p])*(y[p-1]-x[p-1])<0 and not (a-0.1<x[p-1]<a)):
+		print("period found! length is ", n)
+		#returns length of period
 		break
 
 plt.plot(x,y)
-plt.plot(x,x)
+plt.plot(x,x, color = 'black')
 plt.show()
 
