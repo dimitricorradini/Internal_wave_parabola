@@ -22,7 +22,9 @@ b = -a*x[0]
 print(x[0])
 x_true.append(x[0])
 y_true.append(y[0])
-for i in range(1, 5):
+fin = 5
+#fin is total number of reflections 
+for i in range(1, fin):
 
 
     if (y[i-1] > 1-(a*a)/4):
